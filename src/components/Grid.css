@@ -1,0 +1,40 @@
+.row {
+  display: flex;
+}
+
+.grid {
+  display: inline-block;
+  margin: 1rem;
+}
+
+.btn {
+  border: 1px solid lightgrey;
+  padding: 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  font-size: 1.3rem;
+  transition: all 0.3s;
+}
+.btn:hover {
+  background-color: midnightblue;
+}
+
+.grid__buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.grid__container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.instructions {
+  margin-top: 3rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}

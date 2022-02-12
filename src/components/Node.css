@@ -1,0 +1,101 @@
+@keyframes example {
+  from {
+    background-color: yellow;
+    border-radius: 100%;
+    height: 0;
+    width: 0;
+  }
+  to {
+    background-color: red;
+    height: 2.8rem;
+    width: 2.8rem;
+    border-radius: 0%;
+  }
+}
+.grid-col {
+  height: 3rem;
+  width: 3rem;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.node {
+  height: 2.8rem;
+  width: 2.8rem;
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 1000px) {
+  .grid-col {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .node {
+    height: 1.9rem;
+    width: 1.9rem;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .grid-col {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .node {
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .grid-col {
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+
+  .node {
+    height: 1.1rem;
+    width: 1.1rem;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .grid-col {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  .node {
+    height: 0.9rem;
+    width: 0.9rem;
+  }
+}
+
+.node--visited {
+  animation-name: example;
+  animation-duration: 0.7s;
+  background-size: 0px;
+  background-color: red;
+}
+
+.node--unvisited {
+  background-color: yellow;
+}
+
+.node--start {
+  background-color: blueviolet;
+}
+
+.node--target {
+  background-color: gold;
+}
+
+.node--shortestPath {
+  background-color: aqua;
+}
+
+.node--wall {
+  background-color: midnightblue;
+}

@@ -20,7 +20,7 @@ export const Astar = (startNode, targetNode, grid) => {
         pathToTarget: getPathToTarget(curr),
       };
     }
-    const neighbours = addNeighbours(curr, grid, visitedNodes, openNodes);
+    const neighbours = getNeighbours(curr, grid, visitedNodes, openNodes);
 
     openNodes = openNodes.concat(neighbours);
 
@@ -32,8 +32,14 @@ export const Astar = (startNode, targetNode, grid) => {
   };
 };
 
-const addNeighbours = (curr, grid, visitedNodes, openNodes) => {
-  let neighbours = getNeighbours(curr, grid);
+const getNeighbours = (curr, grid, visitedNodes, openNodes) => {
+  let neighbours = findNeighbours(curr, grid);
+  neighbours = filterNeighbours(neighbours, visitedNodes, openNodes);
+
+  return neighbours;
+};
+
+const filterNeighbours = (neighbours, visitedNodes, openNodes) => {
   neighbours = neighbours.filter((n) => {
     // filter visited nodes from neighbours
     const result = visitedNodes.find(
@@ -44,8 +50,9 @@ const addNeighbours = (curr, grid, visitedNodes, openNodes) => {
       return true;
     } else return false;
   });
+
   neighbours = neighbours.filter((n) => {
-    // filter visited nodes from neighbours
+    // filter nodes already in openNodes Array
     const result = openNodes.find(
       (node) => node.col === n.col && node.row === n.row
     );
@@ -62,7 +69,7 @@ const addNeighbours = (curr, grid, visitedNodes, openNodes) => {
   return neighbours;
 };
 
-const getNeighbours = (curr, grid) => {
+const findNeighbours = (curr, grid) => {
   let neighbours = [];
 
   const { row, col } = curr;

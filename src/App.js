@@ -1,4 +1,4 @@
-import Grid from "./components/Grid";
+import Grid from "./components/AStarVisualizer";
 import Node from "./components/Node";
 import "./App.css";
 import Header from "./components/Header";

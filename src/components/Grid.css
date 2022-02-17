@@ -4,7 +4,7 @@
 
 .grid {
   display: inline-block;
-  margin: 1rem;
+  border: 5px solid rgb(34, 34, 34);
 }
 
 .btn {
@@ -24,7 +24,8 @@
 
 .grid__buttons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .grid__container {

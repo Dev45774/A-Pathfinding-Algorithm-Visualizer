@@ -40,6 +40,13 @@ const Node = ({ node, setGrid, grid, mouseIsDown, setMouseIsDown }) => {
         }}
         onMouseDown={() => {
           setMouseIsDown(true);
+          if (node.isTarget || node.isStart) {
+            return;
+          }
+          const newNode = { ...node, isWall: !node.isWall };
+          let newGrid = grid.slice();
+          newGrid[node.row][node.col] = newNode;
+          setGrid(newGrid);
         }}
         className={`node ${getAdditionalStyle(node)}`}
       ></div>

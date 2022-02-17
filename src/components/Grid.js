@@ -4,7 +4,7 @@ const Grid = ({ mouseIsDown, setMouseIsDown, grid, setGrid }) => {
   return (
     <>
       {grid && (
-        <div className="grid">
+        <div className="grid bg-white">
           {grid.map((nodes) => {
             return (
               <div className="row">

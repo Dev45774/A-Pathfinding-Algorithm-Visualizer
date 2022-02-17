@@ -1,4 +1,23 @@
-export const Astar = (startNode, targetNode, grid) => {
+export const Astar = (startNode, targetNode, initialGrid) => {
+  let grid = initialGrid.map((row) => {
+    return row.map((node) => {
+      if (node.isTarget) {
+        console.log(node, "gfdsgsdf");
+        return { ...node };
+      }
+      const newNode = {
+        ...node,
+        hCost: calculateDistToTarget(
+          node.row,
+          node.col,
+          targetNode.col,
+          targetNode.row
+        ),
+      };
+      return newNode;
+    });
+  });
+
   let visitedNodes = [];
   let openNodes = [];
   let curr;
@@ -11,9 +30,10 @@ export const Astar = (startNode, targetNode, grid) => {
         return a.hCost - b.hCost;
       } else return res;
     });
+    //console.log(openNodes);
 
     curr = openNodes.shift();
-
+    visitedNodes.push(curr);
     if (curr.col === targetNode.col && curr.row === targetNode.row) {
       return {
         visitedNodesInOrder: visitedNodes,
@@ -23,8 +43,6 @@ export const Astar = (startNode, targetNode, grid) => {
     const neighbours = getNeighbours(curr, grid, visitedNodes, openNodes);
 
     openNodes = openNodes.concat(neighbours);
-
-    visitedNodes.push(curr);
   }
   return {
     visitedNodesInOrder: visitedNodes,
@@ -138,7 +156,7 @@ const findNeighbours = (curr, grid) => {
             : grid[row + 1][col - 1].prev,
       });
     }
-    if (col < grid.length - 1) {
+    if (col < grid[0].length - 1) {
       neighbours.push({
         ...grid[row + 1][col + 1],
         gCost:
@@ -165,7 +183,7 @@ const findNeighbours = (curr, grid) => {
           : grid[row][col - 1].prev,
     });
   }
-  if (col < grid.length - 1) {
+  if (col < grid[0].length - 1) {
     neighbours.push({
       ...grid[row][col + 1],
       gCost:
@@ -192,4 +210,35 @@ const getPathToTarget = (target) => {
   }
 
   return path;
+};
+
+const calculateDistToTarget = (row, col, TARGET_NODE_COL, TARGET_NODE_ROW) => {
+  let colDist = Math.abs(col - TARGET_NODE_COL);
+  let rowDist = Math.abs(row - TARGET_NODE_ROW);
+  if (rowDist === 0) {
+    return colDist * 10;
+  }
+  if (colDist === 0) {
+    return rowDist * 10;
+  }
+  let dist = 0;
+
+  while (colDist > 0 && rowDist > 0) {
+    colDist--;
+    rowDist--;
+    dist += 14;
+  }
+  if (colDist === 0) {
+    while (rowDist > 0) {
+      rowDist--;
+      dist += 10;
+    }
+  }
+  if (rowDist === 0) {
+    while (colDist > 0) {
+      colDist--;
+      dist += 10;
+    }
+  }
+  return dist;
 };

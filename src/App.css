@@ -12,6 +12,9 @@
   width: 100vw;
   position: relative;
   font-family: sans-serif;
+  background: linear-gradient(132deg, #fc415a, #591bc5, #212335);
+  animation: Gradient 15s ease infinite;
+  background-size: 400% 400%;
 }
 
 html,
@@ -23,4 +26,16 @@ body {
 #root {
   margin: 0;
   padding: 0;
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

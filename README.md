@@ -1,3 +1,3 @@
 # A\* Algorithm Visualizer
 
-## https://astarpathfindingalgovisualizer.herokuapp.com/
+## https://regal-flan-7e950b.netlify.app/
